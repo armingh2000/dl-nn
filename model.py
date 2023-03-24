@@ -20,5 +20,25 @@ class encoder(nn.Module):
     convnet.append(nn.Flatten())
     convnet.append(nn.Linear(8192, 512))
 
+    mlp = []
+    c_hid = [1024, 512, 512, 512, 512, 512]
+
+    for i in range(4):
+      mlp.extend([
+          nn.Linear(c_hid[i], c_hid[i+1]),
+          nn.ReLU(),
+      ])
+
+    self.convnet = nn.Sequential(*convnet)
+    self.mlp = nn.Sequential(*mlp)
+    self.to_mu = nn.Linear(512, 256)
+    self.to_var = nn.Linear(512, 256)
+
+  def forward(self, x, clip_enc):
+    x = self.convnet(x)
+    x = torch.cat([x, clip_enc], dim=-1)
+    x = self.mlp(x)
+
+    return self.to_mu(x), self.to_var(x)
 
     
