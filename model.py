@@ -41,4 +41,33 @@ class encoder(nn.Module):
 
     return self.to_mu(x), self.to_var(x)
 
+
+class decoder(nn.Module):
+  
+
+  def __init__(self):
+    super().__init__()
+    mlp = []
+
+    c_hid = [768, 512, 512, 512, 512]
+
+    for i in range(4):
+      mlp.extend([
+          nn.Linear(c_hid[i], c_hid[i+1]),
+          nn.ReLU(),
+      ])
+
+    self.mlp = nn.Sequential(*mlp)
+
+  def forward(self, mu, log_var, clip_enc):
+    z = self.sample(mu, log_var)
+    z = torch.cat([z, clip_enc], dim=-1)
+    z = self.mlp(z)
     
+    return z
+
+  def sample(self, mu, log_var):
+    std = torch.exp(log_var*0.5)
+    eps = torch.randn_like(std)
+
+    return mu + eps * std
