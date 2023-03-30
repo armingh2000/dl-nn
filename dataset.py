@@ -46,9 +46,6 @@ class ImagesDataset(Dataset):
     return 10000
 
   def get_image_path(self, idx):
-    # p = int((idx // 1e3) * 1e3)
-    # return os.path.join(self.img_path, format(p, '05d'), format(idx, '05d') + '.png')
-    
     return os.path.join(self.img_path, format(idx, '05d') + '.png')
 
 
