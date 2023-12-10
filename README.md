@@ -5,7 +5,14 @@ This repository is an implementation of the project found at Fast_text2StyleGAN,
 # CLIP (Contrastive Language-Image Pre-Training)
 CLIP is a deep learning model trained on image/text pairs so that it can connect images with their related text description. In other words, CLIP aims to encode images and text into the same encoding space. This is achieved by increasing the cosine similarity of the encodings of related pairs and reducing this value for unrelated pairs. An example of how this model works is can be seen in figure.
 
-![A simplified visual example of what CLIP does. At first, it encodes "mountain landscape" using transformers and also encodes the image of the mountain using ViT and ResNet. Now as the tensors on the right side show, the encodings of the text and image are almost similar. This is because the text and image are related to each other.](/assets/clip.png)
+<p align="center">
+    <img src="/assets/clip.png"
+      alt="Clip Model Procedure"
+      width="70%">
+</p>
+
+> A simplified visual example of what CLIP does. At first, it encodes "mountain landscape" using transformers and also encodes the image of the mountain using ViT and ResNet. Now as the tensors on the right side show, the encodings of the text and image are almost similar. This is because the text and image are related to each other.
+
 
 # Files Overview
 - `dataset.py`: Handles dataset processing and preparation.
