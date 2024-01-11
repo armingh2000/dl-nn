@@ -2,7 +2,7 @@
 
 The goal of this project is to train a neural network to generate face images using text input to the model.
 
-*This repository is an implementation of the project found at [Fast_text2StyleGAN]{https://github.com/duxiaodan/Fast_text2StyleGAN}, aimed at reproducing their results in image generation using StyleGAN.*
+*This repository is an implementation of the project found at [Fast_text2StyleGAN](https://github.com/duxiaodan/Fast_text2StyleGAN), aimed at reproducing their results in image generation using StyleGAN.*
 
 # Summary
 We use CLIP(Contrastive Language-Image Pre-Training) model as a base and build on top of it. As we know, CLIP, maps text and image data to the same latent space. We use this leverage to train a neural network to decode any point in the latent space as an output image.
